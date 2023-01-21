@@ -1,0 +1,23 @@
+# Kubernetesのデプロイメントとは
+# Podのデプロイつまり配置や展開することを管理するもの
+# Podがどのイメージを使うか、レプリカをいくつ持つのが望ましいか、を定義する
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apa000dep
+spec:
+  selector:
+    matchLabels:
+      app: apa000kube
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: apa000kube
+    spec:
+      containers:
+        - name: apa000ex91
+          image: nginx
+          ports:
+          - containerPort: 80

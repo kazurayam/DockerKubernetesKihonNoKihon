@@ -1,0 +1,16 @@
+# Kubernetesのサービスとは
+# Podへの通信方法を定義しアクセスを管理する
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: apa000ser     # サービスの名前
+spec:
+  type: NodePort      # サービスの種類
+  ports:              # ポートの設定
+  - port: 8099        # サービスのポート
+    targetPort: 80    # コンテナのポート
+    protocol: TCP     # 通信に使うProtocol
+    nodePort: 30080   # ワーカーノードのポート
+  selector:           # セレクタの設定
+    app: apa000kube
